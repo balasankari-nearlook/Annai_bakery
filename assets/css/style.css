@@ -58,6 +58,8 @@
 /*  01 - 01 Template default CSS
 /*----------------------------------------*/
 /* Common Style */
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 *, *::after, *::before {
   box-sizing: border-box;
 }
@@ -1322,10 +1324,10 @@ textarea.form-field:focus {
 }
 
 .modal-backdrop {
-  z-index: 999;
+ 
 }
 .modal-backdrop .show {
-  z-index: 9999;
+ 
 }
 
 /* Scroll Top style */
@@ -15557,5 +15559,10 @@ textarea.form-control {
   text-align: justify;
 }
  .myModal{
-  z-index:2;
+
+  margin-top:500px;
 } 
+#formModalLabel{
+  text-align: center;
+  color: #BC8157;
+}
