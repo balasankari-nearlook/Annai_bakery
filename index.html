@@ -1780,58 +1780,57 @@
         </div>
         <!-- Section Title End -->
 
-        <form action="#">
+        <form id="customContactForm" action="#">
             <div class="row justify-content-center">
                 <div class="col-mdz-10">
-
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <!-- Contact Form Strat -->
+                            <!-- Contact Form Start -->
                             <div class="contact-form">
-                                <input type="text" class="form-control" placeholder="First Name">
+                                <input type="text" id="customFirstName" class="form-control" placeholder="First Name" required>
                             </div>
                             <!-- Contact Form End -->
                         </div>
                         <div class="col-md-6">
-                            <!-- Contact Form Strat -->
+                            <!-- Contact Form Start -->
                             <div class="contact-form">
-                                <input type="text" class="form-control" placeholder="Last Name">
+                                <input type="text" id="customLastName" class="form-control" placeholder="Last Name" required>
                             </div>
                             <!-- Contact Form End -->
                         </div>
                         <div class="col-md-6">
-                            <!-- Contact Form Strat -->
+                            <!-- Contact Form Start -->
                             <div class="contact-form">
-                                <input type="email" class="form-control" placeholder="Email Address">
+                                <input type="email" id="customEmail" class="form-control" placeholder="Email Address" required>
                             </div>
                             <!-- Contact Form End -->
                         </div>
                         <div class="col-md-6">
-                            <!-- Contact Form Strat -->
+                            <!-- Contact Form Start -->
                             <div class="contact-form">
-                                <input type="text" class="form-control" placeholder="Phone Number">
+                                <input type="text" id="customPhone" class="form-control" placeholder="Phone Number" required>
                             </div>
                             <!-- Contact Form End -->
                         </div>
                         <div class="col-lg-12">
-                            <!-- Contact Form Strat -->
+                            <!-- Contact Form Start -->
                             <div class="contact-form">
-                                <textarea class="form-control" placeholder="Message"></textarea>
+                                <textarea id="customMessage" class="form-control" placeholder="Message" required></textarea>
                             </div>
                             <!-- Contact Form End -->
                         </div>
                         <div class="col-lg-12">
-                            <!-- Contact Form Strat -->
+                            <!-- Contact Form Start -->
                             <div class="contact-form mt-8 text-center">
-                                <button class="btn btn-secondary btn-hover-theme-color-01">Submit</button>
+                                <button id="customSubmitButton" class="btn btn-secondary btn-hover-theme-color-01" disabled>Submit</button>
                             </div>
                             <!-- Contact Form End -->
                         </div>
                     </div>
-
                 </div>
             </div>
         </form>
+        
         
 
     </div>
@@ -2123,7 +2122,48 @@
           modal.hide();
         });
       </script>
-      
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('customContactForm');
+    const submitButton = document.getElementById('customSubmitButton');
+    const inputs = form.querySelectorAll('input, textarea');
+
+    function customValidateForm() {
+        let isValid = true;
+        inputs.forEach(input => {
+            if (!input.value.trim()) {
+                isValid = false;
+            }
+        });
+        submitButton.disabled = !isValid;
+    }
+
+    function customSendWhatsAppMessage(event) {
+        event.preventDefault();
+        
+        const firstName = document.getElementById('customFirstName').value;
+        const lastName = document.getElementById('customLastName').value;
+        const email = document.getElementById('customEmail').value;
+        const phone = document.getElementById('customPhone').value;
+        const message = document.getElementById('customMessage').value;
+        
+        const whatsappMessage = `First Name: ${firstName}\nLast Name: ${lastName}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`;
+        const whatsappURL = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
+
+        window.open(whatsappURL, '_blank');
+    }
+
+    inputs.forEach(input => {
+        input.addEventListener('input', customValidateForm);
+    });
+    
+    // Initial validation check
+    customValidateForm();
+    
+    form.addEventListener('submit', customSendWhatsAppMessage);
+});
+
+      </script>
 
 
 </body>
